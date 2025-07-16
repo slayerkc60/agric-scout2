@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         console.log("success:", data);
         localStorage.setItem("email", email);
+        alert("Registration successful")
       })
 
       .catch(error => {
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         console.log("Login success:", data);
+        alert("login succesful")
             })
       .catch(error => {
         console.error("There was a problem with the login fetch:", error);
