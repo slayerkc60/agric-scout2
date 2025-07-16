@@ -48,7 +48,7 @@ if (loginForm) {
     event.preventDefault();
 
     const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("Password").value.trim();
+    const password = document.getElementById("password").value.trim();
 
     fetch("https://scout-m4ru.onrender.com/login", {
       method: "POST",
