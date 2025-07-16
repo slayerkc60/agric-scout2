@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="container-fluid">
-    <form action="submit" method="post" class="form">
+    <form action="#" method="post" class="form" id="resetForm">
         <div class="reset">
             <h2>RESET YOUR PASSWORD</h2>
             <p style="color: white;">Enter your User's account's verified email address</p>
@@ -25,6 +25,50 @@
         </div>
     </div>
     </form>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+  const resetForm = document.getElementById("resetForm");
+  if (resetForm) {
+    resetForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("verify").value.trim();
+      const newPassword = document.getElementById("newpass").value.trim();
+
+      console.log("Resetting password for:", email);
+
+      fetch("https://scout-m4ru.onrender.com/reset-password", { 
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          new_password: newPassword
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(errData => {
+            console.error("Reset password error from server:", errData);
+            throw new Error(errData.detail || "Password reset failed");
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Password reset success:", data);
+        alert("Password reset successfully!");
+        window.location.href = "login.html"; 
+      })
+      .catch(error => {
+        console.error("There was a problem with the reset password fetch:", error);
+        alert("Password reset failed. Try again.");
+      });
+    });
+  }
+});
+
+    </script>
 </body>
 </html>
