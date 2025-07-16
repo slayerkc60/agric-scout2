@@ -1,0 +1,843 @@
+@media (max-width:599px) {
+  /* Import fonts */
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
+/* General styles */
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-image: url('dark-farm.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+}
+
+form {
+  background: rgba(0,0,0,0.5);
+  margin: 50px auto;
+  padding: 20px;
+  max-width: 90%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+input, select {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button {
+  background: green;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: darkgreen;
+}
+
+/* Placeholder style */
+::placeholder {
+  font-size: 14px;
+}
+
+/* Links styling */
+a {
+  color: #ccc;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: lightgreen;
+}
+
+/* Remove overlay, container, kenburns, and desktop-specific animations */
+
+  
+}
+
+@media(min-width: 600px) {
+  
+
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+body{
+     background-image: url(dark-farm.webp); 
+    /* background-color: black; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    background-position: center;
+    
+}
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+span {
+  font-size: 12px;
+}
+a{
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+.container {
+  margin: 5% auto;
+  position: relative;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: cursive;
+}
+
+.overlay_container {
+  display: block;
+}
+
+.overlay_left {
+  position: absolute;
+  top: 0; 
+  height:100%;
+  transition:all 0.6s ease-in-out;
+}
+
+.sign_in_container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign_up_container {
+  right: 0;
+  width: 50%;
+  z-index: 1;
+  /* display: none; */
+}
+
+/* .form_container{
+    background-color: black;
+
+} */
+
+.form_container form {
+  /* height: 100%; */
+  /* background: #ffffff30; */
+  background-color: rgba(0,0,0,0.5);
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social_cotainer {
+  margin: 20px 0;
+}
+
+.social_cotainer a {
+  /* height: 40px; */
+  width: 40px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.form_container input,
+select {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+}
+
+button,
+.btn {
+  background: #4aff44;
+  color: #fff;
+  border: 1px solid #0bdd04;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active,
+.btn {
+  transform: scale(0.95);
+}
+button:focus,
+.btn {
+  outline: none;
+}
+button.ghost,
+.btn {
+  background: transparent;
+  border-color: #fff;
+}
+.sign_up_container {
+  left: 50%;
+  opacity: 1;
+}
+.overlay_container {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  overflow: visible;
+  transition: transform 1s ease-in-out;
+}
+.overlay {
+  position: relative;
+  border-radius: 50px;
+  height: 100%;
+  width: 200%;
+  left: -100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: overlaySlideshow 15s infinite;
+  background: linear-gradient(to right, #770748, #41ff41) no-repeat 0 0 / cover;
+  color: #fff;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+  display: block;
+  min-height: 100vh;
+}
+
+@keyframes overlaySlideshow {
+  0%{
+    background-image: url('greenleaves.jpg');
+  }
+  33%{
+    background-image: url('big-farm.webp');
+  }
+  66%{
+    background-image: url(big-farm2.webp);
+  }
+  100%{
+    background-image: url(bigfarm3.webp);
+  }
+  
+}
+
+.overlay_panel {
+  position: absolute;
+  top: -10%;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_panel img {
+  margin: 30px;
+  padding-top: 30px;
+}
+
+.overlay_right {
+  right: 0;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+  background-color: transparent;
+}
+
+._left {
+  transform: translateY(0%);
+  transition: transform 0.6s ease-in-out;
+  opacity: 1;
+}
+
+.kenburns-top {
+  -webkit-animation: kenburns-top 5s ease-in-out infinite alternate both;
+  animation: kenburns-top 5s ease-in-out infinite alternate both;
+  display: block;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+#welcomeMessage{
+    display: none;
+}
+
+.submit{
+    /* background-color: #4aff44; */
+    background-color: lightgreen ;
+  color: #fff;
+  border: 1px solid #0bdd04;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+ 
+}
+#submit{
+  background-color: darkgreen;
+}
+#submit:hover{
+  background-color: lightgreen;
+
+}
+
+.submit:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+.rempass:hover{
+    cursor: pointer;
+    color: green;
+
+}
+.sign-in{
+  display: block;
+}
+
+@-webkit-keyframes kenburns-top {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.25) translateY(-15px);
+    transform: scale(1.25) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+}
+@keyframes kenburns-top {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.25) translateY(-15px);
+    transform: scale(1.25) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+}
+ /* #overlay {
+  width: 100%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  animation: bgCarousel 10s infinite;
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-image: url(greenleaves.jpg); 
+} */
+
+@keyframes bgCarousel {
+  0% {
+    background-image: url('greenleaves.jpg');
+  }
+  33% {
+    background-image: url('big-farm.webp');
+  }
+  66% {
+    background-image: url('big-farm2.webp');
+  }
+  100% {
+    background-image: url('bigfarm3.webp');
+  } 
+} 
+ /* #kenburns0{
+    width: 120%;
+  height: 700px;
+  background-size: cover;
+  background-position: center;
+  animation: bgCarousel 15s infinite;
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-repeat: no-repeat;
+}  */
+#signUp{
+  margin-right: -10px;
+  width: 50%;
+} 
+#signIn{
+  margin-top: 300px;
+  
+}
+.kenburns-div{
+    margin-right: 70px ;
+}
+#sign-up{
+  display: none;
+}
+#sign-in{
+  display: none;
+}
+
+/* supplements */
+
+
+/* supplements */
+
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+}
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.container {
+  margin: 5% auto;
+  position: relative;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: cursive;
+
+}
+
+.overlay_container {
+  /* display: none; */
+   margin-top: -15px;
+}
+
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+}
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+
+
+.overlay_container {
+  display: block;
+}
+
+.form_container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign_in_container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign_up_container {
+  right: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.form_container form {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social_cotainer {
+  margin: 20px 0;
+}
+
+.social_cotainer a {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.form_container input,
+select {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+}
+
+button,
+.btn {
+  background: #4aff44;
+  color: #fff;
+  border: 1px solid #0bdd04;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active,
+.btn {
+  transform: scale(0.95);
+}
+
+button:focus,
+.btn {
+  outline: none;
+}
+
+button.ghost,
+.btn {
+  background: transparent;
+  border-color: #fff;
+}
+
+.sign_up_container {
+  left: 50%;
+  /* opacity: 1; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay_container {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  overflow: visible;
+  transition: transform 1s ease-in-out;
+}
+
+#overlay_container {
+  transition: all 1s ease-in-out;
+  display: block !important;
+}
+
+.overlay {
+  position: relative;
+  border-radius: 50px;
+  height: 100%;
+  width: 200%;
+  left: -100%;
+  background: linear-gradient(to right, #07770c, #41ff41) no-repeat 0 0 / cover;
+  color: #fff;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_panel {
+  position: absolute;
+  top: -10%;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_panel img {
+  margin: 30px;
+  padding-top: 30px;
+}
+
+.overlay_right {
+  right: 0;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_left {
+  transform: translateY(0%);
+  transition: transform 0.6s ease-in-out;
+}
+
+.kenburns-top {
+  -webkit-animation: kenburns-top 5s ease-in-out infinite alternate both;
+  animation: kenburns-top 5s ease-in-out infinite alternate both;
+}
+#reg{
+  display: none;
+}
+#sign-in-link{
+  display: none;
+}
+#sign-in-logo{
+  display: none;
+  
+}
+#sign-in-logo2{
+  display: none;
+}
+
+}
+
+
+@media(max-width: 600px) {
+
+  body {
+    background-color: black;
+    background-image: url(dark-farm.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: Slideshow 15s infinite;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: none;
+    border-radius: 0;
+    min-height: auto;
+  }
+
+  .overlay_container {
+    display: none !important;
+  }
+
+  .form_container {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+
+  .form_container form {
+    padding: 20px;
+  }
+
+  .sign_in_container,
+  .sign_up_container {
+    width: 100%;
+    position: static;
+  }
+
+  .form_container input,
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  button,
+  .btn,
+  .submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .social_container {
+    margin: 10px 0;
+  }
+
+  .social_container a {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .kenburns-top,
+  .overlay,
+  .overlay_panel,
+  .overlay_left,
+  .overlay_right {
+    display: none !important;
+  }
+
+  #signUp,
+  #signIn {
+    width: 100%;
+    margin: 10px 0;
+  }
+  #submit{
+    background-color: green;
+    color: whitesmoke;
+    border-radius: 30px;
+    border: 1px;
+  }
+  #sign-in{
+    width: 30%;
+    margin-left: 70%;
+    margin-top: 10%;
+  }
+  #sign-in-link{
+    margin-top: -25px;
+    color: whitesmoke;
+  }
+  #sign-up{
+    width: 35%;
+    margin-left: 70%;
+  }
+@keyframes Slideshow {
+  0% {
+    background-image: url('dark-farm.webp');
+  }
+  33% {
+    background-image: url('big-farm.webp');
+  }
+  66% {
+    background-image: url('big-farm2.webp');
+  }
+  100% {
+    background-image: url('bigfarm3.webp');
+  } 
+} 
+#reg{
+  color: whitesmoke;
+  font-size: 20px;
+  width: 50%;
+  margin-bottom: -60px;
+}
+}
+#sign-in-logo{
+  height: 40px;
+  margin-top: -100px;
+  position: absolute;
+  top: 31%;
+  left: 25%;
+}
+#sign-in-logo2{
+    height: 40px;
+  margin-top: -100px;
+  position: absolute;
+  top: 31%;
+  left: 65%;
+
+}

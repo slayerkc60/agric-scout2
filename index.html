@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-VmM3lAZAL5soiceqd7qV3CyMfCVxYjBy06SnVAk0nnBYnCTsRmR271GGBqM3ZiZ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="kc.css">
+</head>
+<body>
+<script src="script.js"></script>
+    <div class="container" id="container">
+        <div class="form_container sign_up_container" style="background-color: rgba(0, 0, 0,0.3);">
+            <form action="https://scout-m4ru.onrender.com/register" id="signupForm" method="post">
+                <div class="create-account">
+                <h1 style="color: white;">Create Account</h1>
+                <input type="text" name="" id="firstName" placeholder="Firstname" required>
+                 <input type="text" name="" id="lastName" placeholder="lastname" required>
+                <input type="email" name="" id="email" placeholder="Email" required>
+               
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <!-- <input type="password" name="" id="" placeholder="Confirm Password"> -->
+                <!-- <input type="submit" value="Register" class="btn"> -->
+                 <input type="submit" id="submit" class="submit">
+                <button id="sign-in" type="button" onclick="showSignIn()">Sign In</button>
+
+                <!-- <button>Register</button> -->
+                 <p id="sign-in-link">Already have an account??</p>
+                </div>
+            </form>
+        </div>
+        <div class="form_container sign_in_container">
+            <form action="submit" method="post" id="loginForm" style="background-color: rgba(0, 0, 0,0.5)">
+                <h1 style="color: whitesmoke;">Sign In</h1>
+                <div class="social_container">
+                    <a href="#" class="social"><i class="fa-brands fa-facebook fa-bounce fa-xl" style="color: #1556c6;"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-google-plus-g fa-bounce fa-xl" style="color: #e00000;"></i></a>
+                    <a href="#" class="social"><i class="fa-brands fa-linkedin fa-bounce fa-xl" style="color: #74C0FC;"></i></a>
+                </div>
+                <span style="color: white; display: none;">or use your account</span>
+                <div class="sign-in">
+                    <img src="plants-logo2-removebg-preview.png" id="sign-in-logo" class="sign-in-logo">
+                    <img src="plants-logo2-removebg-preview.png" id="sign-in-logo2" class="sign-in-logo">
+                <input type="text" name="" id="Username" placeholder="Username" required>
+                <input type="email" name="" id="email" placeholder="Email" required>
+                <input type="password" name="" id="password" placeholder="Password" required>
+                <a href="rempass.html" style="color: whitesmoke;" class="rempass">Forgot your password?</a>
+                <button id="submit">submit</button>
+                <h2 id="reg">Don't have an account yet?</h2>
+               <button id="sign-up" type="button" onclick="showSignUp()">Register</button>
+
+                </div>
+            </form>
+        </div>
+        <div class="overlay_container" id="overlay_container">
+            <div class="overlay" >
+                <div class="overlay_panel overlay_left" style="background-color: transparent;" id="overlay">
+                  
+                    <div class="kenburns-top">
+                        <div class="kenburns-div">
+                        <h2 id="p1">Agric-scout</h2>
+                        <img src="plants-logo2-removebg-preview.png" class="plants-logo" id="kenburns1">
+                        <button class="ghost" id="signUp" onclick="signUp()">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overlay_panel overlay_right " style="background-color: transparent;">
+                    <div class="kenburns-top" style="background-color: transparent;" id="kenburns0">
+                        <!-- <p id="p2">Agric-scout</p>
+                        <img src="plants-logo2-removebg-preview.png" class="plants-logo" id="kenburns2"> --> 
+                         <button class="ghost" id="signIn" onclick="signIn()">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div id="welcomeMessage" style="display: none;">Registeration succesful</div>
+<script>
+    function signIn() {
+            document.getElementById("overlay_container").style.left="100%"
+            document.getElementById("overlay_left").style.display="block";
+            document.getElementById("overlay_right").style.display = "none";
+            
+        }
+        function signUp() {
+                document.getElementById("overlay_container").style.left = "0%";
+                document.getElementById("").style.display = "none";
+            document.getElementById("overlay_right").style.display = "block";
+            }
+        function login (){
+            document.getElementById("loginForm").style.display="block"
+        }    
+          function showSignIn() {
+    document.getElementById("signupForm").style.display = "none";
+    document.getElementById("loginForm").style.display = "block";
+  }
+
+  function showSignUp() {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("signupForm").style.display = "block";
+  }
+
+</script>
+</body>
+</html>

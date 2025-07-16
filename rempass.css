@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Londrina+Solid:wght@100;300;400;900&display=swap');
+.londrina-solid-thin {
+  font-family: "Londrina Solid", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.londrina-solid-light {
+  font-family: "Londrina Solid", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.londrina-solid-regular {
+  font-family: "Londrina Solid", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.londrina-solid-black {
+  font-family: "Londrina Solid", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+body{
+    background-image: url(greenleaves.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: Slideshow 15s infinite;
+    min-height: 100vh;
+}
+
+@keyframes Slideshow {
+  0%{
+    background-image: url('greenleaves.jpg');
+  }
+  33%{
+    background-image: url('big-farm.webp');
+  }
+  66%{
+    background-image: url(big-farm2.webp);
+  }
+  100%{
+    background-image: url(bigfarm3.webp);
+  }
+  
+}
+/* .form {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-30%, -60%); 
+  background-color: lightgreen;
+  height: 200px;
+  width: 40%;
+} */
+ .form {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-30%, -60%);
+  background-color: transparent;
+  height: 200px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset {
+   margin: auto;
+}
+
+.form .reset{
+    margin-left: auto;
+    margin-right: auto;
+}
+.verify{
+    height: 35px;
+    width: 100%;
+    background-color: whitesmoke;
+    border: 1px;
+}
+.reset h2{
+    color: whitesmoke;
+}
+.submit{
+      margin-top: 30px;
+      margin-left: 120px;
+      height: 40px;
+      width: 220px;
+      border: 1px;
+      border-radius: 30px;    
+}
+.submit:hover{
+    cursor: pointer;
+    background-color: green;
+}
+@media (max-width: 600px) {
+  #verify{
+    position: absolute;
+    left: -20%;
+    width: 150%;
+  }
+  #submit{
+    width: 60%;
+    margin-top: 70px;
+    margin-left: 20px;
+  }
+ 
+  
+}

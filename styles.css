@@ -1,0 +1,706 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  background-color: black;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px 10px;
+}
+
+.form_container form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.submit, button {
+  width: 100%;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.submit:hover, button:hover {
+  background-color: lightgreen;
+  cursor: pointer;
+}
+
+.social_container {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.social_container a {
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.overlay_container {
+  display: none; 
+}
+
+.rempass {
+  display: block;
+  text-align: right;
+  color: lightgrey;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.rempass:hover {
+  color: green;
+}
+
+#welcomeMessage {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.kenburns-top {
+  display: none; 
+}
+
+
+@media (max-width: 320px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .submit, button {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+
+@media (min-width: 600px) {
+  
+
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+body{
+     background-image: url(dark-farm.webp); 
+    background-color: black;
+    
+}
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+span {
+  font-size: 12px;
+}
+a{
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+.container {
+  margin: 5% auto;
+  position: relative;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: cursive;
+}
+
+.overlay_container {
+  /* display: none; */
+}
+
+.overlay_left {
+  position: absolute;
+  top: 0; 
+  height:100%;
+  transition:all 0.6s ease-in-out;
+}
+
+.sign_in_container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign_up_container {
+  right: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.form_container form {
+  /* height: 100%; */
+  /* background: #ffffff30; */
+  background-color: rgba(0,0,0,0.1);
+  
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social_cotainer {
+  margin: 20px 0;
+}
+
+.social_cotainer a {
+  /* height: 40px; */
+  width: 40px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.form_container input,
+select {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+}
+
+button,
+.btn {
+  background: #4aff44;
+  color: #fff;
+  border: 1px solid #0bdd04;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active,
+.btn {
+  transform: scale(0.95);
+}
+button:focus,
+.btn {
+  outline: none;
+}
+button.ghost,
+.btn {
+  background: transparent;
+  border-color: #fff;
+}
+.sign_up_container {
+  left: 50%;
+  opacity: 1;
+}
+.overlay_container {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  overflow: visible;
+  transition: transform 1s ease-in-out;
+}
+#overlay_container {
+  transition: all 1s ease-in-out;
+}
+.overlay {
+  position: relative;
+  border-radius: 50px;
+  height: 100%;
+  width: 200%;
+  left: -100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: overlaySlideshow 15s infinite;
+  background: linear-gradient(to right, #770748, #41ff41) no-repeat 0 0 / cover;
+  color: #fff;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+  display: block;
+
+ 
+}
+
+@keyframes overlaySlideshow {
+  0%{
+    background-image: url('greenleaves.jpg');
+  }
+  33%{
+    background-image: url('big-farm.webp');
+  }
+  66%{
+    background-image: url(big-farm2.webp);
+  }
+  100%{
+    background-image: url(bigfarm3.webp);
+  }
+  
+}
+
+.overlay_panel {
+  position: absolute;
+  top: -10%;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_panel img {
+  margin: 30px;
+  padding-top: 30px;
+}
+
+.overlay_right {
+  right: 0;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+  background-color: transparent;
+}
+
+.overlay_left {
+  transform: translateY(0%);
+  transition: transform 0.6s ease-in-out;
+  opacity: 1;
+}
+
+.kenburns-top {
+  -webkit-animation: kenburns-top 5s ease-in-out infinite alternate both;
+  animation: kenburns-top 5s ease-in-out infinite alternate both;
+  display: block;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+#welcomeMessage{
+    display: none;
+}
+
+.submit{
+    /* background-color: #4aff44; */
+    background-color: lightgreen ;
+  color: #fff;
+  border: 1px solid #0bdd04;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+#submit{
+  background-color: darkgreen;
+}
+#submit:hover{
+  background-color: lightgreen;
+
+}
+
+.submit:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+.rempass:hover{
+    cursor: pointer;
+    color: green;
+
+}
+.sign-in{
+  display: block;
+}
+
+@-webkit-keyframes kenburns-top {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.25) translateY(-15px);
+    transform: scale(1.25) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+}
+@keyframes kenburns-top {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    -webkit-transform-origin: 50% 16%;
+    transform-origin: 50% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1.25) translateY(-15px);
+    transform: scale(1.25) translateY(-15px);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+  }
+}
+ #overlay {
+  width: 100%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  animation: bgCarousel 10s infinite;
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-image: url(greenleaves.jpg); 
+}
+
+@keyframes bgCarousel {
+  0% {
+    background-image: url('greenleaves.jpg');
+  }
+  33% {
+    background-image: url('big-farm.webp');
+  }
+  66% {
+    background-image: url('big-farm2.webp');
+  }
+  100% {
+    background-image: url('bigfarm3.webp');
+  } 
+} 
+ /* #kenburns0{
+    width: 120%;
+  height: 700px;
+  background-size: cover;
+  background-position: center;
+  animation: bgCarousel 15s infinite;
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-repeat: no-repeat;
+}  */
+#signUp{
+  margin-right: 300px;
+} 
+#signIn{
+  margin-top: 300px;
+  
+}
+}
+/* supplements */
+
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+}
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.container {
+  margin: 5% auto;
+  position: relative;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: cursive;
+}
+
+.overlay_container {
+  display: none;
+   margin-top: -15px;
+}
+
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+}
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.container {
+  margin: 5% auto;
+  position: relative;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: cursive;
+}
+
+.overlay_container {
+  display: none;
+}
+
+.form_container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign_in_container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign_up_container {
+  right: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.form_container form {
+  height: 100%;
+  background: #c8c0c035;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social_cotainer {
+  margin: 20px 0;
+}
+
+.social_cotainer a {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.form_container input,
+select {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+}
+
+button,
+.btn {
+  background: #4aff44;
+  color: #fff;
+  border: 1px solid #0bdd04;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active,
+.btn {
+  transform: scale(0.95);
+}
+
+button:focus,
+.btn {
+  outline: none;
+}
+
+button.ghost,
+.btn {
+  background: transparent;
+  border-color: #fff;
+}
+
+.sign_up_container {
+  left: 50%;
+  opacity: 1;
+}
+
+.overlay_container {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  overflow: visible;
+  transition: transform 1s ease-in-out;
+}
+
+#overlay_container {
+  transition: all 1s ease-in-out;
+}
+
+.overlay {
+  position: relative;
+  border-radius: 50px;
+  height: 100%;
+  width: 200%;
+  left: -100%;
+  background: linear-gradient(to right, #07770c, #41ff41) no-repeat 0 0 / cover;
+  color: #fff;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_panel {
+  position: absolute;
+  top: -10%;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_panel img {
+  margin: 30px;
+  padding-top: 30px;
+}
+
+.overlay_right {
+  right: 0;
+  transform: translateY(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay_left {
+  transform: translateY(0%);
+  transition: transform 0.6s ease-in-out;
+}
+
+.kenburns-top {
+  -webkit-animation: kenburns-top 5s ease-in-out infinite alternate both;
+  animation: kenburns-top 5s ease-in-out infinite alternate both;
+}
+
+
+
+

@@ -1,0 +1,128 @@
+@media (min-width: 300px) {
+    
+body{
+    background-image: url(dark-farm.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    background-position: center;
+    animation: bgSlideshow 15s infinite;
+}
+.sign_in_container{
+    display: block;
+}
+
+.overlay{
+    display: none;
+}
+#signupForm{
+    height: 100%;
+    display: block;
+    margin-top: -200px;
+    background-color: 
+}
+#signupForm input{
+    display: block;
+    position: relative;
+    left: 30%;
+    top: 40%;
+    height: 70px;
+    width: 400px;
+    margin: 20px;
+    font-size: 35px;
+}
+#submit{
+    height: 30px;
+    width: 30px;
+    border: 1px;
+    border-radius: 40px;
+    background-color: green;
+    font-size: 30px;
+}
+#signupForm h1{
+     margin-left: 35%;
+     font-size: 50px;
+}
+.create-account{
+    display: block;
+    margin-top: 50%;
+    height: 30%;
+    
+}
+::placeholder{
+    font-size: 30px;
+}
+#sign-in{
+   height: 70px;
+    width: 180px;
+    border: 1px;
+    border-radius: 40px;
+    background-color: green;
+    font-size: 30px;
+    margin-top: 20%;
+    margin-left: 80%;
+    color: whitesmoke;  
+}
+button:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+}
+#sign-up{
+    margin-top: 400px;
+}
+#loginForm{
+    margin-top: 50%;
+    height: 150%;
+    background:rgba(0,0,0,0.5)
+}
+#loginForm h1{
+    margin-left: 40%;
+    font-size: 60px;
+}
+#loginForm input{
+     display: block;
+    position: relative;
+    left: 30%;
+    top: 50%;
+    height: 50px;
+    width: 450px;
+    margin: 20px;
+    font-size: 35px;
+    
+
+}
+#loginForm button{
+     height: 70px;
+    width: 180px;
+    border: 1px;
+    border-radius: 40px;
+    background-color: green;
+    font-size: 30px;
+    margin-top: 10%;
+    margin-left: 10%;
+    color: whitesmoke;
+}
+#loginForm a{
+    font-size: 40px;
+}
+#sign-in-link{
+    color: whitesmoke;
+    margin-left: 40%;
+    margin-top: -30px;
+    font-size: 30px;
+}
+@keyframes bgSlideshow  {
+  0% {
+    background-image: url('big-farm.webp');
+  }
+  33% {
+    background-image: url('bigfarm3.webp');
+  }
+  66% {
+    background-image: url('big-farm2.webp');
+  }
+  100% {
+    background-image: url('big-farm.webp');
+  }   
+}
+}
