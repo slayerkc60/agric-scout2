@@ -40,10 +40,10 @@ body{
     background-image: url('big-farm.webp');
   }
   66%{
-    background-image: url(big-farm2.webp);
+    background-image: url('big-farm2.webp');
   }
   100%{
-    background-image: url(bigfarm3.webp);
+    background-image: url('bigfarm3.webp');
   }
   
 }
@@ -98,6 +98,14 @@ body{
     cursor: pointer;
     background-color: green;
 }
+#newpass{
+    height: 35px;
+    width: 100%;
+    background-color: whitesmoke;
+    border: 1px;
+    margin-top: 20px;
+
+}
 @media (max-width: 600px) {
   #verify{
     position: absolute;
@@ -106,8 +114,22 @@ body{
   }
   #submit{
     width: 60%;
-    margin-top: 70px;
+    margin-top: 120px;
     margin-left: 20px;
+    background-color: darkgreen;
+  }
+  #submit:hover{
+    cursor: pointer;
+    background-color: lightgreen;
+  }
+  #newpass{
+    position: absolute;
+    left: -20%;
+    height: 35px;
+    width: 150%;
+    background-color: whitesmoke;
+    border: 1px;
+    margin-top: 50px;
   }
  
   
