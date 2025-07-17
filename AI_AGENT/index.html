@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agri-Scout | AI Farming Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+   <!-- Lets work on the sidebar here -->
+     <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>💬 History</h2>
+        <button id="toggleSidebar">⏩</button>
+      </div>
+      <ul id="chatList">
+        
+      </ul>
+    </aside>
+  
+
+
+<!-- This is the main content of the page -->
+  <div class="container">
+    <div class="content-box">
+    <header>
+      <h1>🌱Agri-Scout</h1>
+      <p>Your AI Farming Assistant</p>
+    </header>
+
+    <main>
+      <div class="intro">
+        <p>Hello! I'm Agri-Scout. I can help you identify plant diseases and pests.</p>
+        <p class="disclaimer">For general advice only. Consult local experts for precise solution</p>
+      </div>
+
+      <div class="actions">
+        <!-- Ok so, this is the upload button -->
+         <label class="upload-btn">
+          📷 Upload a Plant Photo
+          <input type="file" id="plantPhoto" accept="image/*" hidden>
+         </label>
+
+         <!-- Image preview box -->
+          <div class="image-preview" id="imagePreview">
+            <span>No image uploaded yet...</span>
+            <img id="previewImage" src="" alt="Uploaded preview" style="display: none;"/>
+          </div>
+
+         <!-- Describing the symptoms -->
+          <button id="describeBtn">✍️ Describe Your Symptoms</button>
+      </div>
+
+      <!-- Chat area(we'll hide it initially) -->
+       <div class="chat-box" id="chatBox">
+        <div class="chat-history" id="chatHistory">
+          <div class="bot-msg">Agri-Scout: Please describe your plant's symptoms...</div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="userInput" placeholder="Describe your plant's symptoms...">
+          <button id="sendBtn">Send</button>
+        </div>
+       </div>
+    </main>
+  </div>
+  </div>
+  </div>
+
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
