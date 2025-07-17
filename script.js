@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     signupForm.addEventListener("submit", function (event) {
       event.preventDefault();
 
+    window.location.href="AI_AGENT/index.html"
+
       const firstName = document.getElementById("firstName").value.trim();
       const lastName = document.getElementById("lastName").value.trim();
       const email = document.getElementById("email").value.trim();
@@ -34,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("success:", data);
         localStorage.setItem("email", email);
         alert("Registration successful")
+        window.location.href="AI_AGENT/index.html"
       })
 
       .catch(error => {
