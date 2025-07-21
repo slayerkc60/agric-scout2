@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       console.log("Attempting login with:", email, password);
 
-      fetch("https://scout-m4ru.onrender.com/login", {
+      fetch("https://scout-m4ru.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
