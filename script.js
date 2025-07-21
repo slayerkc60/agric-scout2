@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
-      fetch("https://scout-m4ru.onrender.com/auth/register", {
+      fetch("https://scout-m4ru.onrender.com/register", {
 
         method: "POST",
         headers: {
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       console.log("Attempting login with:", email, password);
 
-      fetch("https://scout-m4ru.onrender.com/auth/login", {
+      fetch("https://scout-m4ru.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
