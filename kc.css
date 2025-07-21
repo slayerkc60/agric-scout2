@@ -1,9 +1,9 @@
 @media (max-width:599px) {
-  /* Import fonts */
+  
 @import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat");
 
-/* General styles */
+
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
@@ -64,12 +64,12 @@ button:hover {
   background: darkgreen;
 }
 
-/* Placeholder style */
+
 ::placeholder {
   font-size: 14px;
 }
 
-/* Links styling */
+
 a {
   color: #ccc;
   text-align: center;
@@ -82,7 +82,7 @@ a:hover {
   color: lightgreen;
 }
 
-/* Remove overlay, container, kenburns, and desktop-specific animations */
+
 
   
 }
@@ -839,5 +839,4 @@ button.ghost,
   position: absolute;
   top: 31%;
   left: 65%;
-
 }
