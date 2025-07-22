@@ -10,40 +10,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isAnalyzeMode = false;
 
-  // Handle photo upload
-  plantPhotoInput?.addEventListener("change", async () => {
-    const file = plantPhotoInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        previewImage.src = reader.result;
-        previewImage.style.display = "block";
-        imagePreview.querySelector("span").style.display = "none";
-      };
-      reader.readAsDataURL(file);
+  if (plantPhotoInput) {
+    plantPhotoInput.addEventListener("change", async () => {
+      const file = plantPhotoInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          previewImage.src = reader.result;
+          previewImage.style.display = "block";
+          imagePreview.querySelector("span").style.display = "none";
+        };
+        reader.readAsDataURL(file);
 
-      await analyzeUploadedImage(file);
-    }
-  });
+        await analyzeUploadedImage(file);
+      }
+    });
+  }
 
-  // Handle describe button click
-  describeBtn?.addEventListener("click", () => {
-    isAnalyzeMode = true;
-    chatBox.style.display = "block";
-    userInput.placeholder = "Describe your plant's symptoms...";
-    appendMessage("Agri-Scout", "Please describe your plant's symptoms in detail.");
-  });
+  if (describeBtn) {
+    describeBtn.addEventListener("click", () => {
+      isAnalyzeMode = true;
+      chatBox.style.display = "block";
+      userInput.placeholder = "Describe your plant's symptoms (e.g., yellow leaves, brown spots, wilting)...";
+      appendMessage("Agri-Scout", "Please describe your plant's symptoms in detail. I'll help you identify what might be wrong!");
+    });
+  }
 
-  // Handle send button click
-  sendBtn?.addEventListener("click", sendMessage);
-  userInput?.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendMessage();
-  });
+  if (sendBtn) sendBtn.addEventListener("click", sendMessage);
+  if (userInput) {
+    userInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+  }
 
-  // Analyze uploaded image
   async function analyzeUploadedImage(file) {
     try {
       chatBox.style.display = "block";
+      isAnalyzeMode = true;
       appendMessage("Agri-Scout", "Analyzing your plant photo...");
 
       const formData = new FormData();
@@ -60,67 +63,78 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const data = await response.json();
-      appendMessage("Agri-Scout", data.prediction || "Analysis complete. Please describe further symptoms if any.");
+      console.log("✅ Image API response:", data);
+
+      const botResponse = extractBotResponse(data, "prediction");
+      appendMessage("Agri-Scout", botResponse);
+
     } catch (error) {
-      console.error("Image analysis error:", error);
-      appendMessage("Agri-Scout", "Sorry, I couldn't analyze the image. Try again or describe symptoms manually.");
+      console.error("❌ Image analysis error:", error);
+      appendMessage("Agri-Scout", "Sorry, I couldn't analyze the image. Please try uploading again or describe the symptoms manually.");
     }
   }
 
-  // Send message (either analyze or ask)
   async function sendMessage() {
     const userText = userInput.value.trim();
-    if (!userText) return;
+    if (userText === "") return;
 
     appendMessage("You", userText);
     userInput.value = "";
 
     try {
-      let url, body, headers;
+      let response;
+      let botResponse;
 
       if (isAnalyzeMode) {
-        // Analyze symptoms (if you had a text-based analysis endpoint)
-        // Currently, your /analyse is for images, so fallback to general Q&A
-        url = "https://scout-m4ru.onrender.com/ai/ask";
-        body = new URLSearchParams({ question: userText });
-        headers = { "Content-Type": "application/x-www-form-urlencoded" };
-      } else {
-        // General questions
-        url = "https://scout-m4ru.onrender.com/ai/ask";
-        body = new URLSearchParams({ question: userText });
-        headers = { "Content-Type": "application/x-www-form-urlencoded" };
-      }
+        const formData = new FormData();
+        formData.append("symptoms", userText);
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers,
-        body
-      });
+        response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
+          method: "POST",
+          body: formData
+        });
+      } else {
+        const formData = new URLSearchParams();
+        formData.append("question", userText);
+
+        response = await fetch("https://scout-m4ru.onrender.com/ai/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: formData.toString()
+        });
+      }
 
       if (!response.ok) {
         const errorData = await response.json();
+        console.error("API error:", errorData);
         throw new Error(errorData.detail || "API request failed");
       }
 
       const data = await response.json();
-      const botResponse = data.answer || "I couldn't process your request properly.";
+      console.log("✅ Text API response:", data);
+
+      botResponse = isAnalyzeMode ? extractBotResponse(data, "prediction") : extractBotResponse(data, "answer");
       appendMessage("Agri-Scout", botResponse);
+
     } catch (error) {
-      console.error("API error:", error);
-      appendMessage("Agri-Scout", "Sorry, something went wrong. Check your connection and try again.");
+      console.error("❌ API error:", error);
+      appendMessage("Agri-Scout", "Sorry, something went wrong. Please check your connection and try again.");
     }
   }
 
-  // Append message to chat
-  function appendMessage(sender, message) {
-    const msgDiv = document.createElement("div");
-    msgDiv.classList.add(sender === "You" ? "user-msg" : "bot-msg");
-    msgDiv.textContent = `${sender}: ${message}`;
-    chatHistory.appendChild(msgDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
+  function extractBotResponse(data, field) {
+    try {
+      if (data[field] && data[field].choices && data[field].choices[0].message.content) {
+        return data[field].choices[0].message.content;
+      }
+      return "I couldn't process your request properly.";
+    } catch {
+      return "Unexpected response format.";
+    }
   }
 
-  // Add general question button
   const askBtn = document.createElement("button");
   askBtn.textContent = "💬 Ask General Questions";
   askBtn.style.cssText = `
@@ -136,14 +150,26 @@ document.addEventListener("DOMContentLoaded", () => {
     width: 100%;
     transition: transform 0.2s;
   `;
+
   askBtn.onmouseover = () => askBtn.style.transform = "translateY(-2px)";
   askBtn.onmouseout = () => askBtn.style.transform = "translateY(0)";
+
   askBtn.addEventListener("click", () => {
     isAnalyzeMode = false;
     chatBox.style.display = "block";
-    userInput.placeholder = "Ask me anything about farming or plants...";
-    appendMessage("Agri-Scout", "I'm here to help with your farming questions!");
+    userInput.placeholder = "Ask me anything about farming, plants, or agriculture...";
+    appendMessage("Agri-Scout", "Hello! I'm here to answer any questions about farming, agriculture, or plants. What would you like to know?");
   });
 
-  describeBtn?.parentNode.insertBefore(askBtn, describeBtn.nextSibling);
+  if (describeBtn && describeBtn.parentNode) {
+    describeBtn.parentNode.insertBefore(askBtn, describeBtn.nextSibling);
+  }
+
+  function appendMessage(sender, message) {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add(sender === "You" ? "user-msg" : "bot-msg");
+    msgDiv.textContent = `${sender}: ${message}`;
+    chatHistory.appendChild(msgDiv);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
 });
