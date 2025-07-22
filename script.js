@@ -1,175 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const plantPhotoInput = document.getElementById("plantPhoto");
-  const previewImage = document.getElementById("previewImage");
-  const imagePreview = document.getElementById("imagePreview");
-  const describeBtn = document.getElementById("describeBtn");
-  const chatBox = document.getElementById("chatBox");
-  const sendBtn = document.getElementById("sendBtn");
-  const userInput = document.getElementById("userInput");
-  const chatHistory = document.getElementById("chatHistory");
+  const signupForm = document.getElementById("signupForm");
+  if (signupForm) {
+    console.log(signupForm, "Signup form found");
 
-  let isAnalyzeMode = false;
+    signupForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-  if (plantPhotoInput) {
-    plantPhotoInput.addEventListener("change", async () => {
-      const file = plantPhotoInput.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          previewImage.src = reader.result;
-          previewImage.style.display = "block";
-          imagePreview.querySelector("span").style.display = "none";
-        };
-        reader.readAsDataURL(file);
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-        await analyzeUploadedImage(file);
-      }
-    });
-  }
-
-  if (describeBtn) {
-    describeBtn.addEventListener("click", () => {
-      isAnalyzeMode = true;
-      chatBox.style.display = "block";
-      userInput.placeholder = "Describe your plant's symptoms (e.g., yellow leaves, brown spots, wilting)...";
-      appendMessage("Agri-Scout", "Please describe your plant's symptoms in detail. I'll help you identify what might be wrong!");
-    });
-  }
-
-  if (sendBtn) sendBtn.addEventListener("click", sendMessage);
-  if (userInput) {
-    userInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
-  }
-
-  async function analyzeUploadedImage(file) {
-    try {
-      chatBox.style.display = "block";
-      isAnalyzeMode = true;
-      appendMessage("Agri-Scout", "Analyzing your plant photo...");
-
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
+      fetch("https://scout-m4ru.onrender.com/register", {
         method: "POST",
-        body: formData
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password
+        })
+      })
+      
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("success:", data);
+        localStorage.setItem("email", email);
+      })
+
+      .catch(error => {
+        console.error("There was a problem with the fetch:", error);
       });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || "Failed to analyze image");
-      }
-
-      const data = await response.json();
-      console.log("✅ Image API response:", data);
-
-      const botResponse = extractBotResponse(data, "prediction");
-      appendMessage("Agri-Scout", botResponse);
-
-    } catch (error) {
-      console.error("❌ Image analysis error:", error);
-      appendMessage("Agri-Scout", "Sorry, I couldn't analyze the image. Please try uploading again or describe the symptoms manually.");
-    }
-  }
-
-  async function sendMessage() {
-    const userText = userInput.value.trim();
-    if (userText === "") return;
-
-    appendMessage("You", userText);
-    userInput.value = "";
-
-    try {
-      let response;
-      let botResponse;
-
-      if (isAnalyzeMode) {
-        const formData = new FormData();
-        formData.append("symptoms", userText);
-
-        response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
-          method: "POST",
-          body: formData
-        });
-      } else {
-        const formData = new URLSearchParams();
-        formData.append("question", userText);
-
-        response = await fetch("https://scout-m4ru.onrender.com/ai/ask", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: formData.toString()
-        });
-      }
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("API error:", errorData);
-        throw new Error(errorData.detail || "API request failed");
-      }
-
-      const data = await response.json();
-      console.log("✅ Text API response:", data);
-
-      botResponse = isAnalyzeMode ? extractBotResponse(data, "prediction") : extractBotResponse(data, "answer");
-      appendMessage("Agri-Scout", botResponse);
-
-    } catch (error) {
-      console.error("❌ API error:", error);
-      appendMessage("Agri-Scout", "Sorry, something went wrong. Please check your connection and try again.");
-    }
-  }
-
-  function extractBotResponse(data, field) {
-    try {
-      if (data[field] && data[field].choices && data[field].choices[0].message.content) {
-        return data[field].choices[0].message.content;
-      }
-      return "I couldn't process your request properly.";
-    } catch {
-      return "Unexpected response format.";
-    }
-  }
-
-  const askBtn = document.createElement("button");
-  askBtn.textContent = "💬 Ask General Questions";
-  askBtn.style.cssText = `
-    background: linear-gradient(135deg, #764ba2, #667eea);
-    color: white;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 600;
-    margin-top: 10px;
-    width: 100%;
-    transition: transform 0.2s;
-  `;
-
-  askBtn.onmouseover = () => askBtn.style.transform = "translateY(-2px)";
-  askBtn.onmouseout = () => askBtn.style.transform = "translateY(0)";
-
-  askBtn.addEventListener("click", () => {
-    isAnalyzeMode = false;
-    chatBox.style.display = "block";
-    userInput.placeholder = "Ask me anything about farming, plants, or agriculture...";
-    appendMessage("Agri-Scout", "Hello! I'm here to answer any questions about farming, agriculture, or plants. What would you like to know?");
-  });
-
-  if (describeBtn && describeBtn.parentNode) {
-    describeBtn.parentNode.insertBefore(askBtn, describeBtn.nextSibling);
-  }
-
-  function appendMessage(sender, message) {
-    const msgDiv = document.createElement("div");
-    msgDiv.classList.add(sender === "You" ? "user-msg" : "bot-msg");
-    msgDiv.textContent = `${sender}: ${message}`;
-    chatHistory.appendChild(msgDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
+    });
   }
 });
+
+
+
+
+

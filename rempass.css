@@ -25,27 +25,6 @@
 
 body{
     background-image: url(greenleaves.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    animation: Slideshow 15s infinite;
-    min-height: 100vh;
-}
-
-@keyframes Slideshow {
-  0%{
-    background-image: url('greenleaves.jpg');
-  }
-  33%{
-    background-image: url('big-farm.webp');
-  }
-  66%{
-    background-image: url('big-farm2.webp');
-  }
-  100%{
-    background-image: url('bigfarm3.webp');
-  }
-  
 }
 /* .form {
   position: absolute;
@@ -97,40 +76,4 @@ body{
 .submit:hover{
     cursor: pointer;
     background-color: green;
-}
-#newpass{
-    height: 35px;
-    width: 100%;
-    background-color: whitesmoke;
-    border: 1px;
-    margin-top: 20px;
-
-}
-@media (max-width: 600px) {
-  #verify{
-    position: absolute;
-    left: -20%;
-    width: 150%;
-  }
-  #submit{
-    width: 60%;
-    margin-top: 120px;
-    margin-left: 20px;
-    background-color: darkgreen;
-  }
-  #submit:hover{
-    cursor: pointer;
-    background-color: lightgreen;
-  }
-  #newpass{
-    position: absolute;
-    left: -20%;
-    height: 35px;
-    width: 150%;
-    background-color: whitesmoke;
-    border: 1px;
-    margin-top: 50px;
-  }
- 
-  
 }

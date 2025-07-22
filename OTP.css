@@ -1,25 +1,5 @@
 body{
     background-image: url(greenleaves.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    animation: Slideshow 10s infinite;
-    min-height: 100vh;
-}
-@keyframes Slideshow {
-  0%{
-    background-image: url('greenleaves.jpg');
-  }
-  33%{
-    background-image: url('big-farm.webp');
-  }
-  66%{
-    background-image: url(big-farm2.webp);
-  }
-  100%{
-    background-image: url(bigfarm3.webp);
-  }
-  
 }
 .container-fluid{
     margin-top: 150px;
@@ -30,25 +10,13 @@ body{
     border: 1px;
 }
 .submit{
-   margin-top: 30px;
-      margin-left: 120px;
-      height: 40px;
-      width: 220px;
-      border: 1px;
-      border-radius: 30px;   
+    margin-top: 40px;
+    margin-left: 200px;
+    height: 40px;
+    width:  170px;
+    border: 1px;
+    border-radius: 40px;
 }
 .submit:hover{
     background-color: green;
-}
-
-@media (max-width:600px) {
-    #submit{
-        margin-top: 30px;
-      margin-left: 120px;
-      height: 40px;
-      width: 220px;
-      border: 1px;
-      border-radius: 30px;   
-    }
-    
 }
