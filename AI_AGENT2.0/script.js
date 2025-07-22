@@ -1,245 +1,186 @@
-// Core variables
-const describeBtn = document.getElementById('describeBtn');
-const chatBox = document.getElementById('chatBox');
-const sendBtn = document.getElementById('sendBtn');
-const userInput = document.getElementById('userInput');
-const chatHistory = document.getElementById('chatHistory');
-const sidebar = document.getElementById('sidebar');
-const toggleBtn = document.getElementById('toggleSidebar');
+document.addEventListener("DOMContentLoaded", () => {
+  const plantPhotoInput = document.getElementById("plantPhoto");
+  const previewImage = document.getElementById("previewImage");
+  const imagePreview = document.getElementById("imagePreview");
+  const describeBtn = document.getElementById("describeBtn");
+  const chatBox = document.getElementById("chatBox");
+  const sendBtn = document.getElementById("sendBtn");
+  const userInput = document.getElementById("userInput");
+  const chatHistory = document.getElementById("chatHistory");
 
-let chatSessions = {};
-let currentChatId = null;
+  let isAnalyzeMode = false; // Track if we're in analyze mode
 
-// Show chat when user clicks "Describe"
-describeBtn.addEventListener('click', () => {
-  chatBox.style.display = 'block';
-  describeBtn.style.display = 'none';
-});
+  // Handle photo upload with image analysis
 
-// Send message logic
-sendBtn.addEventListener('click', () => {
-  const message = userInput.value.trim();
-  if (!message) return;
-
-  // If no chat session, create one
-  if (!currentChatId) {
-    currentChatId = `chat_${Date.now()}`;
-    chatSessions[currentChatId] = {
-      title: "Untitled Chat",
-      messages: []
-    };
-    addChatToSidebar(currentChatId, "Untitled Chat");
+  // Handle photo upload
+  if (plantPhotoInput) {
+    plantPhotoInput.addEventListener("change", async () => {
+      const file = plantPhotoInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          previewImage.src = reader.result;
+          previewImage.style.display = "block";
+          imagePreview.querySelector("span").style.display = "none";
+        };
+        reader.readAsDataURL(file);
+        
+        // Auto-analyze the uploaded image
+        await analyzeUploadedImage(file);
+      }
+    });
   }
 
-  // Add user message
-  const userMsg = document.createElement('div');
-  userMsg.className = 'user-msg';
-  userMsg.textContent = message;
-  chatHistory.appendChild(userMsg);
-  chatSessions[currentChatId].messages.push({ sender: 'user', text: message });
-
-  userInput.value = '';
-  chatHistory.scrollTop = chatHistory.scrollHeight;
-
-  // Simulate bot reply
-  setTimeout(() => {
-    const reply = "🌿 Agri-Scout: Thanks! I'm analyzing your symptoms...";
-    const botMsg = document.createElement('div');
-    botMsg.className = 'bot-msg';
-    botMsg.textContent = reply;
-    chatHistory.appendChild(botMsg);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
-    chatSessions[currentChatId].messages.push({ sender: 'bot', text: reply });
-
-    // Save to localStorage
-localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
-localStorage.setItem('currentChatId', currentChatId);
-
-  }, 600);
-});
-
-// Enable Enter key to send message
-userInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    sendBtn.click();
-  }
-});
-
-// Sidebar toggle
-toggleBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('collapsed');
-});
-
-const fileInput = document.getElementById('plantPhoto');
-const previewBox = document.getElementById('imagePreview');
-const previewImage = document.getElementById('previewImage');
-const previewText = previewBox.querySelector('span');
-
-fileInput.addEventListener('change', function () {
-  const file = fileInput.files[0];
-  if (!file) return;
-
-  // Image preview
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    previewImage.src = e.target.result;
-    previewImage.style.display = 'block';
-
-    const previewText = previewBox.querySelector('span'); // ✅ Add this line
-    if (previewText) previewText.style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-
-  // 🌿 Add image upload message to chat
-  if (!currentChatId) {
-    currentChatId = `chat_${Date.now()}`;
-    chatSessions[currentChatId] = {
-      title: "Untitled Chat",
-      messages: []
-    };
-    addChatToSidebar(currentChatId, "Untitled Chat");
+  // Handle describe symptoms button - switches to analyze mode
+  if (describeBtn) {
+    describeBtn.addEventListener("click", () => {
+      isAnalyzeMode = true;
+      chatBox.style.display = "block";
+      userInput.placeholder = "Describe your plant's symptoms (e.g., yellow leaves, brown spots, wilting)...";
+      appendMessage("Agri-Scout", "Please describe your plant's symptoms in detail. I'll help you identify what might be wrong!");
+    });
   }
 
-  const userMsg = document.createElement('div');
-  userMsg.className = 'user-msg';
-  userMsg.textContent = '📷 Photo uploaded and sent for analysis.';
-  chatHistory.appendChild(userMsg);
-  chatSessions[currentChatId].messages.push({
-    sender: 'user',
-    type: 'image',
-    fileName: file.name,
-    timestamp: Date.now()
-  });
+  // Handle send button and enter key
+  if (sendBtn) {
+    sendBtn.addEventListener("click", sendMessage);
+  }
 
-  chatHistory.scrollTop = chatHistory.scrollHeight;
+  if (userInput) {
+    userInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+  }
 
-  // 🧠 Send image to backend
-  const formData = new FormData();
-  formData.append('photo', file);
-
-  fetch('https://your-backend-api.com/analyze-photo', {
-    method: 'POST',
-    body: formData,
-  })
-    .then(response => response.json())
-    .then(data => {
-      const botMsg = document.createElement('div');
-      botMsg.className = 'bot-msg';
-      botMsg.textContent = `🌿 Agri-Scout: ${data.analysis || 'Photo analyzed successfully!'}`;
-      chatHistory.appendChild(botMsg);
-      chatSessions[currentChatId].messages.push({
-        sender: 'bot',
-        text: data.analysis || 'Photo analyzed successfully!',
-        timestamp: Date.now()
+  // Function to analyze uploaded image using /ai/analyse endpoint
+  async function analyzeUploadedImage(file) {
+    try {
+      chatBox.style.display = "block";
+      isAnalyzeMode = true;
+      
+      appendMessage("Agri-Scout", "Analyzing your plant photo...");
+      
+      // Create FormData for image upload
+      const formData = new FormData();
+      formData.append("image", file);
+      
+      const response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
+        method: "POST",
+        body: formData
       });
 
-      // Save to local storage
-      localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
-      localStorage.setItem('currentChatId', currentChatId);
-
-      chatHistory.scrollTop = chatHistory.scrollHeight;
-    })
-    .catch(error => {
-      const botMsg = document.createElement('div');
-      botMsg.className = 'bot-msg';
-      botMsg.textContent = `⚠️ Agri-Scout: Oops! Failed to analyze image.`;
-      chatHistory.appendChild(botMsg);
-      console.error('Image upload failed:', error);
-    });
-});
-
-
-// Function to add a new chat to sidebar
-function addChatToSidebar(chatId, title) {
-  const chatList = document.getElementById('chatList') || createChatList();
-  const listItem = document.createElement('li');
-  listItem.setAttribute('data-id', chatId);
-
-  const titleSpan = document.createElement('span');
-  titleSpan.className = 'chat-title';
-  titleSpan.textContent = title;
-
-  titleSpan.addEventListener('click', () => {
-    loadChat(chatId);
-  });
-
-  const optionsDiv = document.createElement('div');
-  optionsDiv.className = 'chat-options';
-
-  const renameBtn = document.createElement('button');
-  renameBtn.textContent = 'Rename';
-  renameBtn.onclick = () => {
-    const newTitle = prompt('Rename this chat:');
-    if (newTitle) {
-      titleSpan.textContent = newTitle;
-      chatSessions[chatId].title = newTitle;
-    }
-  };
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = 'Trash';
-  deleteBtn.onclick = () => {
-    if (confirm('Are you sure you want to delete this chat?')) {
-      delete chatSessions[chatId];
-      listItem.remove();
-      if (chatId === currentChatId) {
-        chatHistory.innerHTML = '';
-        userInput.value = '';
-        currentChatId = null;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Failed to analyze image");
       }
+
+      const data = await response.json();
+      appendMessage("Agri-Scout", data.analysis || data.result || "Image analysis completed. Please describe any symptoms you notice for more detailed diagnosis.");
+      
+    } catch (error) {
+      console.error("❌ Image analysis error:", error);
+      appendMessage("Agri-Scout", "Sorry, I couldn't analyze the image. Please try uploading again or describe the symptoms manually.");
     }
-    
-    localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
-localStorage.setItem('currentChatId', currentChatId);
-
-  };
-
-  optionsDiv.appendChild(renameBtn);
-  optionsDiv.appendChild(deleteBtn);
-  listItem.appendChild(titleSpan);
-  listItem.appendChild(optionsDiv);
-  chatList.appendChild(listItem);
-}
-
-// Create chat list in sidebar if missing
-function createChatList() {
-  const chatList = document.createElement('ul');
-  chatList.id = 'chatList';
-  sidebar.appendChild(chatList);
-  return chatList;
-}
-
-// Load a chat session into view
-function loadChat(chatId) {
-  const session = chatSessions[chatId];
-  if (session) {
-    chatHistory.innerHTML = '';
-    session.messages.forEach(msg => {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = msg.sender === 'user' ? 'user-msg' : 'bot-msg';
-      msgDiv.textContent = msg.text;
-      chatHistory.appendChild(msgDiv);
-    });
-    currentChatId = chatId;
-  }
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  // Restore sessions
-  const storedSessions = localStorage.getItem('chatSessions');
-  const storedCurrent = localStorage.getItem('currentChatId');
-
-  if (storedSessions) {
-    chatSessions = JSON.parse(storedSessions);
-    Object.entries(chatSessions).forEach(([id, session]) => {
-      addChatToSidebar(id, session.title);
-    });
   }
 
-  if (storedCurrent && chatSessions[storedCurrent]) {
-    currentChatId = storedCurrent;
-    loadChat(currentChatId);
+  // Main function to send messages to appropriate API
+  async function sendMessage() {
+    const userText = userInput.value.trim();
+    if (userText === "") return;
+
+    appendMessage("You", userText);
+    userInput.value = "";
+
+    try {
+      let response;
+      let requestBody;
+      
+      if (isAnalyzeMode) {
+        // Use /ai/analyse endpoint for symptom analysis and plant diagnosis
+        console.log("🔍 Analysing:", userText);
+        requestBody = { symptoms: userText };
+        
+        response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(requestBody)
+        });
+      } else {
+        // Use /ai/ask endpoint for general agricultural questions
+        console.log("❓ Sending to /ai/ask:", userText);
+        requestBody = { question: userText };
+        
+        response = await fetch("https://scout-m4ru.onrender.com/ai/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(requestBody)
+        });
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("API error:", errorData);
+        throw new Error(errorData.detail || "API request failed");
+      }
+
+      const data = await response.json();
+      console.log("✅ API response:", data);
+      
+      // Handle different response formats
+      const botResponse = data.analysis || data.answer || data.result || "I couldn't process your request properly.";
+      
+      appendMessage("Agri-Scout", botResponse);
+
+    } catch (error) {
+      console.error("❌ API error:", error);
+      appendMessage("Agri-Scout", "Sorry, something went wrong. Please check your connection and try again.");
+    }
+  }
+
+  // Add button to switch to general Q&A mode
+  const askBtn = document.createElement("button");
+  askBtn.textContent = "💬 Ask General Questions";
+  askBtn.style.cssText = `
+    background: linear-gradient(135deg, #764ba2, #667eea);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 10px;
+    width: 100%;
+    transition: transform 0.2s;
+  `;
+  
+  askBtn.onmouseover = () => askBtn.style.transform = "translateY(-2px)";
+  askBtn.onmouseout = () => askBtn.style.transform = "translateY(0)";
+  
+  askBtn.addEventListener("click", () => {
+    isAnalyzeMode = false;
+    chatBox.style.display = "block";
+    userInput.placeholder = "Ask me anything about farming, plants, or agriculture...";
+    appendMessage("Agri-Scout", "Hello! I'm here to answer any questions about farming, agriculture, or plants. What would you like to know?");
+  });
+  
+  // Insert the button after the describe button
+  if (describeBtn && describeBtn.parentNode) {
+    describeBtn.parentNode.insertBefore(askBtn, describeBtn.nextSibling);
+  }
+
+  // Utility function to append messages to chat
+  function appendMessage(sender, message) {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add(sender === "You" ? "user-msg" : "bot-msg");
+    msgDiv.textContent = `${sender}: ${message}`;
+    chatHistory.appendChild(msgDiv);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
   }
 });
-
