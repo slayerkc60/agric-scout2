@@ -1,0 +1,300 @@
+body{
+    background: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(green\ plantation.webp);
+
+}
+.container{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    bottom: 20%;
+    width: 75%;
+    height: 550px;
+    background: url(green\ plantation.webp ) no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    margin-bottom: 30%;
+    
+}
+.container .content{
+    position: absolute ;
+    top: 0;
+    left: 0;  
+    width: 40%;
+    height: 71%;
+    background-color: transparent;
+    padding: 80px;
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column ;
+
+
+     
+ 
+}
+.container .content h2{
+    position: absolute;
+    left: 40%;
+}
+.text-sci{
+    position: absolute;
+    left: 10%;
+    margin-top: 30%;
+}
+.text-sci h2{
+    font-size: 40px;
+    line-height: 1;
+    margin-top: 20%;
+    margin-left: -40%;
+    
+}
+.text-sci h2 span{
+    font-size: 25px;
+
+}
+.text-sci p{
+    font-size: 16px;
+    /* margin: 20px 0; */
+    margin-top: 70%;
+
+}
+.container .logreg-box{
+    width: calc(100% - 58%);
+    height: 100%;
+    /* background: yellowgreen; */
+
+}
+#signupForm{
+    position: relative;
+    left: 50%;
+    top: 10% ;
+    width: 40%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    position: absolute;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: whitesmoke;
+    height: 83.5vh;
+
+}
+
+.logreg-box .form-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%;
+    height: 100%;
+    background: transparent;
+    backdrop-filter: blur(20px); */
+}
+.form-box h2{
+    font-size: 32px;
+    text-align: center;
+}
+
+.form-box .input-box{
+    width: 340px;
+    height: 50px;
+    border-bottom: 2px solid white;
+    margin: 30px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+} 
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+#Email-Label{
+    margin-top: -80px;
+}
+::placeholder{
+    color: whitesmoke;
+}
+.remember-forgot{
+    font-size: 14.5px;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input{
+    accent-color: white;
+    margin-right: 3px;
+
+}
+.remember-forgot a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+.btn{
+    width: 100%;
+    height: 45px;
+    background: darkgreen;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: whitesmoke;
+    font-weight: 500;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    border-radius: 20px;
+
+}
+.btn:hover{
+    background-color: lightgreen;
+}
+.form-box .login-register{
+    font-size: 14.5px;
+    text-align: center;
+    font-weight: 500;
+    text-align: center;
+    margin-top: -3px;
+}
+
+.login-register p a {
+    color: wheat;
+    font-weight: 600;
+    text-decoration: none;
+
+}
+.login-register p a:hover {
+    text-decoration: underline;
+
+}
+
+@media (max-width: 768px) {
+    body{
+        background: url(green\ plantation.webp);
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+  .container {
+    width: 110%;
+    height: 200%;
+    top: 30%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    margin-bottom: 0;
+    /* background-image: none; */
+    background-size: cover;
+    background-position: center;
+    max-height: 100vh;
+  }
+
+  .container .content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .container .content h2{
+    margin-top: -50px;
+    margin-left: -50px;
+
+  }
+
+  .text-sci h2 {
+    font-size: 28px;
+    display: none;
+  }
+
+  .text-sci h2 span {
+    font-size: 18px;
+    display: none;
+  }
+
+  .text-sci p {
+    font-size: 14px;
+    margin: 15px 0;
+    display: none;
+  }
+
+  .container .logreg-box {
+    width: 100%;
+    height: auto;
+  }
+
+  #form {
+    position: relative;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+    
+  }
+
+  .form-box h2 {
+    font-size: 24px;
+  }
+
+  .form-box .input-box {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+  }
+
+  .input-box input {
+    font-size: 14px;
+  }
+
+  .input-box label {
+    font-size: 12px;
+  }
+
+  .remember-forgot {
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .remember-forgot label,
+  .remember-forgot a {
+    margin: 5px 0;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .form-box .login-register {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+
+} 
+
+
+
+
