@@ -1,124 +1,91 @@
-@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
-    @import url("https://fonts.googleapis.com/css2?family=Montserrat");
-
-    body {
-      /* background-image: url(dark-farm.webp); */
-      background-color: black;
-       background-size: cover;
-      background-position: center;
-      font-family: 'Montserrat', cursive; 
-       /* opacity: 25%;*/
-     } 
-
-    h1 {
-      font-weight: bold;
-      margin: 0 0 1rem 0;
-    }
-
-    .container {
-      margin: 2% auto;
-      max-width: 100%;
-      padding: 1rem;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
-      padding: 1rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      width: 90%;
-      background: #eee;
-      border: none;
-      padding: 12px 15px;
-      margin: 8px 0;
-      border-radius: 5px;
-    }
-
-    .submit, .btn-success {
-      background-color: greenyellow;
-      color: #fff;
-      border: 1px solid #0bdd04;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 12px 45px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      width: 100%;
-    }
-
-    .submit:hover, .btn-success:hover {
-      background-color: #07770c;
-    } 
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 1rem; 
-      display: block;
-    } 
-
-     .plants-logo {
-      width: 80px;
-    }
-
-    .social_container a {
-      margin: 0 10px;
-      color: white;
-      display: none;
-    }
-
-    button.ghost {
-      background: transparent;
-      border: 1px solid white;
-      color: white;
-      border-radius: 20px;
-      padding: 10px 30px;
-      margin: 0.5rem;
-      text-transform: uppercase;
-    }
-
-    button.ghost:hover {
-      background: white;
-      color: black;
-    }
-
-   
-    .kenburns-top {
-      -webkit-animation: kenburns-top 5s ease-in-out infinite alternate both;
-      animation: kenburns-top 5s ease-in-out infinite alternate both;
-      display: none;
-    }
-    .sign-in{
-      display: none;
-    } 
-    .overlay{ 
-       display: none; 
-    } 
-
-
-    @keyframes kenburns-top {
-      0% {
-        transform: scale(1) translateY(0);
-        transform-origin: 50% 16%;
-      }
-      100% {
-        transform: scale(1.25) translateY(-15px);
-        transform-origin: top;
-      }
-    }
+@media (max-width:599px) {
   
- 
+@import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
 
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-image: url('dark-farm.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+}
+
+form {
+  background: rgba(0,0,0,0.5);
+  margin: 50px auto;
+  padding: 20px;
+  max-width: 90%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+input, select {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button {
+  background: green;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: darkgreen;
+}
+
+
+::placeholder {
+  font-size: 14px;
+}
+
+
+a {
+  color: #ccc;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: lightgreen;
+}
+
+
+
+  
+}
 
 @media(min-width: 600px) {
   
@@ -126,8 +93,12 @@
 @import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat");
 body{
-     /* background-image: url(dark-farm.webp);  */
-    background-color: black;
+     background-image: url(dark-farm.webp); 
+    /* background-color: black; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    background-position: center;
     
 }
 * {
@@ -167,7 +138,7 @@ a{
 }
 
 .overlay_container {
-  /* display: none; */
+  display: block;
 }
 
 .overlay_left {
@@ -187,6 +158,7 @@ a{
   right: 0;
   width: 50%;
   z-index: 1;
+  /* display: none; */
 }
 
 /* .form_container{
@@ -198,7 +170,6 @@ a{
   /* height: 100%; */
   /* background: #ffffff30; */
   background-color: rgba(0,0,0,0.5);
-  
   padding: 0 50px;
   display: flex;
   flex-direction: column;
@@ -272,9 +243,6 @@ button.ghost,
   overflow: visible;
   transition: transform 1s ease-in-out;
 }
-#overlay_container {
-  transition: all 1s ease-in-out;
-}
 .overlay {
   position: relative;
   border-radius: 50px;
@@ -290,8 +258,7 @@ button.ghost,
   transform: translateY(0);
   transition: transform 0.6s ease-in-out;
   display: block;
-
- 
+  min-height: 100vh;
 }
 
 @keyframes overlaySlideshow {
@@ -337,7 +304,7 @@ button.ghost,
   background-color: transparent;
 }
 
-.overlay_left {
+._left {
   transform: translateY(0%);
   transition: transform 0.6s ease-in-out;
   opacity: 1;
@@ -370,6 +337,7 @@ button:hover{
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
+ 
 }
 #submit{
   background-color: darkgreen;
@@ -472,6 +440,12 @@ button:hover{
 .kenburns-div{
     margin-right: 70px ;
 }
+#sign-up{
+  display: none;
+}
+#sign-in{
+  display: none;
+}
 
 /* supplements */
 
@@ -515,15 +489,16 @@ a {
   width: 768px;
   max-width: 100%;
   min-height: 480px;
-  background: #fff;
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   font-family: cursive;
+
 }
 
 .overlay_container {
-  display: none;
+  /* display: none; */
    margin-top: -15px;
 }
 
@@ -558,21 +533,10 @@ a {
   margin: 15px 0;
 }
 
-.container {
-  margin: 5% auto;
-  position: relative;
-  width: 768px;
-  max-width: 100%;
-  min-height: 480px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  font-family: cursive;
-}
+
 
 .overlay_container {
-  display: none;
+  display: block;
 }
 
 .form_container {
@@ -596,7 +560,7 @@ a {
 
 .form_container form {
   height: 100%;
-  background: #fff;
+  background: rgba(0, 0, 0, 0.5);
   padding: 0 50px;
   display: flex;
   flex-direction: column;
@@ -662,8 +626,7 @@ button.ghost,
 .sign_up_container {
   left: 50%;
   /* opacity: 1; */
-  background-color: rgba(0, 0, 0, 0.9);
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .overlay_container {
@@ -679,6 +642,7 @@ button.ghost,
 
 #overlay_container {
   transition: all 1s ease-in-out;
+  display: block !important;
 }
 
 .overlay {
@@ -728,10 +692,151 @@ button.ghost,
   -webkit-animation: kenburns-top 5s ease-in-out infinite alternate both;
   animation: kenburns-top 5s ease-in-out infinite alternate both;
 }
+#reg{
+  display: none;
+}
+#sign-in-link{
+  display: none;
+}
+#sign-in-logo{
+  display: none;
+  
+}
+#sign-in-logo2{
+  display: none;
+}
 
 }
 
 
+@media(max-width: 600px) {
 
+  body {
+    background-color: black;
+    background-image: url(dark-farm.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: Slideshow 15s infinite;
+  }
 
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: none;
+    border-radius: 0;
+    min-height: auto;
+  }
 
+  .overlay_container {
+    display: none !important;
+  }
+
+  .form_container {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+
+  .form_container form {
+    padding: 20px;
+  }
+
+  .sign_in_container,
+  .sign_up_container {
+    width: 100%;
+    position: static;
+  }
+
+  .form_container input,
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  button,
+  .btn,
+  .submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .social_container {
+    margin: 10px 0;
+  }
+
+  .social_container a {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .kenburns-top,
+  .overlay,
+  .overlay_panel,
+  .overlay_left,
+  .overlay_right {
+    display: none !important;
+  }
+
+  #signUp,
+  #signIn {
+    width: 100%;
+    margin: 10px 0;
+  }
+  #submit{
+    background-color: green;
+    color: whitesmoke;
+    border-radius: 30px;
+    border: 1px;
+  }
+  #sign-in{
+    width: 30%;
+    margin-left: 70%;
+    margin-top: 10%;
+  }
+  #sign-in-link{
+    margin-top: -25px;
+    color: whitesmoke;
+  }
+  #sign-up{
+    width: 35%;
+    margin-left: 70%;
+  }
+@keyframes Slideshow {
+  0% {
+    background-image: url('dark-farm.webp');
+  }
+  33% {
+    background-image: url('big-farm.webp');
+  }
+  66% {
+    background-image: url('big-farm2.webp');
+  }
+  100% {
+    background-image: url('bigfarm3.webp');
+  } 
+} 
+#reg{
+  color: whitesmoke;
+  font-size: 20px;
+  width: 50%;
+  margin-bottom: -60px;
+}
+}
+#sign-in-logo{
+  height: 40px;
+  margin-top: -100px;
+  position: absolute;
+  top: 31%;
+  left: 25%;
+}
+#sign-in-logo2{
+    height: 40px;
+  margin-top: -100px;
+  position: absolute;
+  top: 31%;
+  left: 65%;
+}

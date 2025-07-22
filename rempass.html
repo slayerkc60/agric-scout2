@@ -6,21 +6,69 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="icon" href="apple-touch-icon.png" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Londrina+Solid:wght@100;300;400;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="rempass.css">
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <title>Document</title>
+    <title>Agric-scout</title>
 </head>
 <body>
     <div class="container-fluid">
-    <form action="submit" method="post" class="form">
+    <form action="#" method="put" class="form" id="resetForm">
         <div class="reset">
             <h2>RESET YOUR PASSWORD</h2>
             <p style="color: white;">Enter your User's account's verified email address</p>
-        <input type="email" class="verify" class="verify" placeholder="Enter your Email Address">
+        <input type="email" class="verify" id="verify" placeholder="Enter your Email Address">
+        <input type="text" id="newpass" placeholder="New password">
         <input type="submit" class="submit" id="submit">
         </div>
     </div>
     </form>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+  const resetForm = document.getElementById("resetForm");
+  if (resetForm) {
+    resetForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("verify").value.trim();
+      const newPassword = document.getElementById("newpass").value.trim();
+
+      console.log("Resetting password for:", email);
+
+      fetch("https://scout-m4ru.onrender.com/auth/reset-password", { 
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          new_password: newPassword
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(errData => {
+            console.error("Reset password error from server:", errData);
+            throw new Error(errData.detail || "Password reset failed");
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Password reset success:", data);
+        alert("Password reset successfully!");
+        window.location.href = "login.html"; 
+      })
+      .catch(error => {
+        console.error("There was a problem with the reset password fetch:", error);
+        alert("Password reset failed. Try again.");
+      });
+    });
+  }
+});
+
+    </script>
 </body>
 </html>
