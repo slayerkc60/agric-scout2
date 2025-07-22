@@ -68,6 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
       
       const response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
         method: "POST",
+        headers : {
+            "content-Type" : "multipart/form-data"
+        },
         body: formData
       });
 
@@ -105,9 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
         response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "multipart/form-data"
           },
-          body: JSON.stringify(requestBody)
+          body: formData
         });
       } else {
         // Use /ai/ask endpoint for general agricultural questions
