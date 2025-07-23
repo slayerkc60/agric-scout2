@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     appendMessage("You", userText);
     userInput.value = "";
 
-    appendMessage ("hold on" ,"Analysing Your Input");
+    appendMessage ("Agric-scout" ,"Analysing Your Input");
     const loadingmsg = chatHistory.lastChild;
 
     try {
