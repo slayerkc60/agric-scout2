@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData();
         formData.append("symptoms", userText);
 
-        response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
+        response = await fetch("https://scout-m4ru.onrender.com/ai/ask", {
           method: "POST",
           body: formData
         });
