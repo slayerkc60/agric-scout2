@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const askBtn = document.createElement("button");
-  askBtn.textContent = "💬 Ask General Questions";
+  askBtn.textContent = "💬 Ask Questions About Your Plants";
   askBtn.style.cssText = `
     background: linear-gradient(135deg, #764ba2, #667eea);
     color: white;
