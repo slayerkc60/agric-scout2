@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (describeBtn) {
+     describeBtn.style.display = "none";
     describeBtn.addEventListener("click", () => {
       isAnalyzeMode = true;
       chatBox.style.display = "block";
