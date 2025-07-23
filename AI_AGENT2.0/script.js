@@ -81,6 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
     appendMessage("You", userText);
     userInput.value = "";
 
+    appendMessage ("Analysing Your Input");
+    const loadingmsg = chatHistory.lastChild;
+
     try {
       let response;
       let botResponse;
