@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: {
            "Content-Type": "application/x-www-form-urlencoded"
           },
-          body: formData.tostring()
+          body: formData.toString()
         });
       } else {
         const formData = new URLSearchParams();
