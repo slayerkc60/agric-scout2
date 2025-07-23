@@ -86,12 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
       let botResponse;
 
       if (isAnalyzeMode) {
-        const formData = new FormData();
+        const formData = new URLSearchParams();
         formData.append("symptoms", userText);
 
         response = await fetch("https://scout-m4ru.onrender.com/ai/ask", {
           method: "POST",
-          body: formData
+          headers: {
+           "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: formData.tostring()
         });
       } else {
         const formData = new URLSearchParams();
