@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       chatBox.style.display = "block";
       isAnalyzeMode = true;
-      appendMessage("Agri-Scout", "Analyzing your plant photo...");
+      appendMessage("Agri-Scout", "🕒...");
 
       const formData = new FormData();
       formData.append("image", file);
