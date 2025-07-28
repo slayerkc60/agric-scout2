@@ -189,12 +189,13 @@ body{
 
 @media (max-width: 768px) {
     body{
-        background: url(green\ plantation.webp);
+        background: none;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         /* background-color: black; */
         min-height: 200vh;
+        
     }
 
   .container {
@@ -224,6 +225,9 @@ body{
     margin-top: -50px;
     margin-left: -50px;
 
+  }
+  .lefted{
+    display: none;
   }
 
   .text-sci h2 {
@@ -255,6 +259,7 @@ body{
     height: 100%;
     border-radius: 0 0 10px 10px;
     padding: 20px;
+    min-height: 110%;
     
   }
 
