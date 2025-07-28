@@ -12,7 +12,7 @@ body{
     bottom: 20%;
     width: 75%;
     height: 550px;
-    background: url(green\ plantation.webp ) no-repeat;
+    background: url(bigfarm3\ -\ Copy.webp ) no-repeat;
     background-size: cover;
     background-position: center;
     border-radius: 20px;
@@ -30,11 +30,7 @@ body{
     color: whitesmoke;
     display: flex;
     justify-content: space-between;
-    flex-direction: column ;
-
-
-     
- 
+    flex-direction: column;
 }
 .container .content h2{
     position: absolute;
@@ -179,19 +175,31 @@ body{
     text-decoration: underline;
 
 }
+.lefted{
+  background-color: red;
+  height: 300%;
+  margin-top: -36%;
+  margin-left: -36%;
+  background-image: url(begonia.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 220%;
+  min-height: 92vh;
+}
 
 @media (max-width: 768px) {
     body{
         background: url(green\ plantation.webp);
-        min-height: 100vh;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        /* background-color: black; */
+        min-height: 200vh;
     }
 
   .container {
-    width: 110%;
-    height: 200%;
+    width: 120%;
+    height: 400%;
     top: 30%;
     left: 45%;
     transform: translate(-50%, -50%);
@@ -200,9 +208,9 @@ body{
     border-radius: 20px;
     margin-bottom: 0;
     /* background-image: none; */
-    background-size: cover;
-    background-position: center;
     max-height: 100vh;
+  
+ 
   }
 
   .container .content {
