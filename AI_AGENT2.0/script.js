@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     appendMessage("You", userText);
     userInput.value = "";
-    <img src=""/>
+    
     appendMessage ("Agric-scout" , `<img src = "circles-menu-3" alt ="loading" width= "30">`);
     const loadingmsg = chatHistory.lastChild;
 
