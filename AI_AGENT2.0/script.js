@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (describeBtn) {
-     describeBtn.style.display = "none";
     describeBtn.addEventListener("click", () => {
       isAnalyzeMode = true;
       chatBox.style.display = "block";
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       chatBox.style.display = "block";
       isAnalyzeMode = true;
-      appendMessage("Agri-Scout", "🕒...");
+      appendMessage("Agri-Scout", "Analyzing your plant photo...");
 
       const formData = new FormData();
       formData.append("image", file);
@@ -82,9 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     appendMessage("You", userText);
     userInput.value = "";
 
-    appendMessage ("Agric-scout" ,"🕒...");
-    const loadingmsg = chatHistory.lastChild;
-
     try {
       let response;
       let botResponse;
@@ -93,12 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new URLSearchParams();
         formData.append("symptoms", userText);
 
-        response = await fetch("https://scout-m4ru.onrender.com/ai/ask", {
+        response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
           method: "POST",
-          headers: {
-           "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: formData.toString()
+          body: formData
         });
       } else {
         const formData = new URLSearchParams();
@@ -143,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const askBtn = document.createElement("button");
-  askBtn.textContent = "💬 Ask Questions About Your Plants";
+  askBtn.textContent = "💬 Ask General Questions";
   askBtn.style.cssText = `
     background: linear-gradient(135deg, #764ba2, #667eea);
     color: white;
