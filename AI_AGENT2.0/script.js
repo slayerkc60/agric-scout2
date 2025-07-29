@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (describeBtn) {
+     describeBtn.style.display = "none";
     describeBtn.addEventListener("click", () => {
       isAnalyzeMode = true;
       chatBox.style.display = "block";
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       chatBox.style.display = "block";
       isAnalyzeMode = true;
-      appendMessage("Agri-Scout", "Analyzing your plant photo...");
+      appendMessage("Agri-Scout", "🕒...");
 
       const formData = new FormData();
       formData.append("image", file);
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       appendMessage("Agri-Scout", botResponse);
 
     } catch (error) {
-      console.error("❌ Image analysis error:", error);
+      console.error(" Image analysis error:", error);
       appendMessage("Agri-Scout", "Sorry, I couldn't analyze the image. Please try uploading again or describe the symptoms manually.");
     }
   }
@@ -80,6 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     appendMessage("You", userText);
     userInput.value = "";
+    <img src=""/>
+    appendMessage ("Agric-scout" , `<img src = "circles-menu-3" alt ="loading" width= "30">`);
+    const loadingmsg = chatHistory.lastChild;
 
     try {
       let response;
@@ -89,9 +93,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new URLSearchParams();
         formData.append("symptoms", userText);
 
-        response = await fetch("https://scout-m4ru.onrender.com/ai/analyse", {
+        response = await fetch("https://scout-m4ru.onrender.com/ai/ask", {
           method: "POST",
-          body: formData
+          headers: {
+           "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: formData.toString()
         });
       } else {
         const formData = new URLSearchParams();
@@ -136,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const askBtn = document.createElement("button");
-  askBtn.textContent = "💬 Ask General Questions";
+  askBtn.textContent = "💬 Ask Questions About Your Plants";
   askBtn.style.cssText = `
     background: linear-gradient(135deg, #764ba2, #667eea);
     color: white;
