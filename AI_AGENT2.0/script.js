@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       chatBox.style.display = "block";
       isAnalyzeMode = true;
-      appendMessage("Agri-Scout",  '<img src = "circles-menu-3.svg" alt ="loading" width="30">');
+      appendMessage("Agri-Scout",  '<img src = "circles-menu-3.gif" alt ="loading" width="30">');
 
       const formData = new FormData();
       formData.append("image", file);
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     appendMessage("You", userText);
     userInput.value = "";
     
-    appendMessage ("Agric-scout" , '<img src = "circles-menu-3.svg" alt ="loading" width="30">');
+    appendMessage ("Agric-scout" , '<img src = "circles-menu-3.gif" alt ="loading" width="30">');
     const loadingmsg = chatHistory.lastChild;
 
     try {
