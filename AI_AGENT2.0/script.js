@@ -48,7 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       chatBox.style.display = "block";
       isAnalyzeMode = true;
-      appendMessage("Agri-Scout",  `<img src="circles-menu-3.gif" alt="loading" width="30">`);
+      let myLoader = document.createElement('img')
+      myLoader.src="circles-menu-3.gif"
+
+
+      appendMessage("Agri-Scout",  myLoader);
 
       const formData = new FormData();
       formData.append("image", file);
@@ -67,6 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("✅ Image API response:", data);
 
       const botResponse = extractBotResponse(data, "prediction");
+
+
+
       appendMessage("Agri-Scout", botResponse);
 
     } catch (error) {
@@ -81,8 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     appendMessage("You", userText);
     userInput.value = "";
+          let myLoader = document.createElement('img')
+      myLoader.src="circles-menu-3.gif"
+      myLoader.width=30
+      myLoader.classList.add("bot-loader")
+      appendMessage("Agri-Scout",  myLoader);
     
-    appendMessage ("Agric-scout" , `<img src="circles-menu-3.gif" alt="loading" width="30">`);
+    // appendMessage ("Agric-scout" , `<img src="circles-menu-3.gif" alt="loading" width="30">`);
     const loadingmsg = chatHistory.lastChild;
 
     try {
@@ -122,7 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       console.log("✅ Text API response:", data);
 
-      botResponse = isAnalyzeMode ? extractBotResponse(data, "prediction") : extractBotResponse(data, "answer");
+            botResponse = isAnalyzeMode ? extractBotResponse(data, "prediction") : extractBotResponse(data, "answer");
+      const existingLoader = document.querySelector(".bot-loader");
+if (existingLoader && existingLoader.parentNode) {
+  existingLoader.parentNode.remove();
+}
+
+
+
       appendMessage("Agri-Scout", botResponse);
 
     } catch (error) {
@@ -172,11 +191,26 @@ document.addEventListener("DOMContentLoaded", () => {
     describeBtn.parentNode.insertBefore(askBtn, describeBtn.nextSibling);
   }
 
+  // function appendMessage(sender, message) {
+  //   const msgDiv = document.createElement("div");
+  //   msgDiv.classList.add(sender === "You" ? "user-msg" : "bot-msg");
+  //   msgDiv.textContent = `${sender}: ${message}`;
+  //   chatHistory.appendChild(msgDiv);
+  //   chatHistory.scrollTop = chatHistory.scrollHeight;
+  // }
+
   function appendMessage(sender, message) {
-    const msgDiv = document.createElement("div");
-    msgDiv.classList.add(sender === "You" ? "user-msg" : "bot-msg");
+  const msgDiv = document.createElement("div");
+  msgDiv.classList.add(sender === "You" ? "user-msg" : "bot-msg");
+
+  // Check if message is an image element
+  if (message instanceof HTMLElement && message.tagName === 'IMG') {
+    msgDiv.appendChild(message);
+  } else {
     msgDiv.textContent = `${sender}: ${message}`;
-    chatHistory.appendChild(msgDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
   }
+
+  chatHistory.appendChild(msgDiv);
+  chatHistory.scrollTop = chatHistory.scrollHeight;
+}
 });
