@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       chatBox.style.display = "block";
       isAnalyzeMode = true;
-      appendMessage("Agri-Scout",  '<img src = "circles-menu-3" alt ="loading" width= "30">');
+      appendMessage("Agri-Scout",  '<img src = "circles-menu-3" alt ="loading" width="30">');
 
       const formData = new FormData();
       formData.append("image", file);
